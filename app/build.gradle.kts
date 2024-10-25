@@ -76,4 +76,6 @@ dependencies {
     implementation (libs.com.squareup.retrofit2)
     implementation (libs.com.squareup.converter.gson)
     implementation (libs.okhttp3.logging.interceptor)
+
+    implementation (libs.com.jakewharton.timber)
 }
