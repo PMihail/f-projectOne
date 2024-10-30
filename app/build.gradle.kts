@@ -1,3 +1,5 @@
+import java.util.Properties
+
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -8,6 +10,11 @@ plugins {
 android {
     namespace = "com.mipa.f1stat"
     compileSdk = 34
+
+    val properties = Properties().apply {
+        rootProject.file("local.properties").reader().use(::load)
+    }
+    val myProp = properties["baseUrl"] as String
 
     defaultConfig {
         applicationId = "com.mipa.f1stat"
@@ -23,6 +30,12 @@ android {
     }
 
     buildTypes {
+        debug {
+            isMinifyEnabled = false
+            buildConfigField("String", "baseUrl", myProp)
+        }
+
+
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -48,6 +61,10 @@ android {
         resources {
             excludes += "/META-INF/{AL2.0,LGPL2.1}"
         }
+    }
+
+    buildFeatures {
+        buildConfig = true
     }
 }
 
@@ -78,4 +95,8 @@ dependencies {
     implementation (libs.okhttp3.logging.interceptor)
 
     implementation (libs.com.jakewharton.timber)
+}
+
+fun buildConfigFieldStringValue(source: String): String {
+    return "\"$source\""
 }
