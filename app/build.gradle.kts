@@ -5,7 +5,7 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
     id ("com.google.dagger.hilt.android")
-    alias(libs.plugins.compose.compiler) apply false
+//    alias(libs.plugins.compose.compiler) apply false
 }
 
 android {
