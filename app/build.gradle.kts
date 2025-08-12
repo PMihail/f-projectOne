@@ -5,12 +5,12 @@ plugins {
     alias(libs.plugins.jetbrains.kotlin.android)
     kotlin("kapt")
     id ("com.google.dagger.hilt.android")
-//    alias(libs.plugins.compose.compiler) apply false
+    alias(libs.plugins.compose.compiler) apply false
 }
 
 android {
     namespace = "com.mipa.f1stat"
-    compileSdk = 34
+    compileSdk = 35
 
     val properties = Properties().apply {
         rootProject.file("local.properties").reader().use(::load)
@@ -20,7 +20,7 @@ android {
     defaultConfig {
         applicationId = "com.mipa.f1stat"
         minSdk = 29
-        targetSdk = 34
+        targetSdk = 35
         versionCode = 1
         versionName = "1.0"
 
